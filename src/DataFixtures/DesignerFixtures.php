@@ -15,7 +15,7 @@ class DesignerFixtures extends Fixture
         "https://media.discordapp.net/attachments/875652964520448006/1004680120117772328/IMG_0434.jpg?width=527&height=702",
         "https://camo.voz.tech/8bca714b8015086d538dddd86ce3f6cfeb7f696d/68747470733a2f2f692e696d6775722e636f6d2f594559545944702e706e67/"];
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 3; $i++) { 
             $key = array_rand($designer,1);
             $keyanh = array_rand($anh,1);
             $designer = new Designer;

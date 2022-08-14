@@ -15,7 +15,7 @@ class ManufacturerFixtures extends Fixture
         "https://media-exp1.licdn.com/dms/image/C4D0BAQGDO1MaULF8tw/company-logo_200_200/0/1568076736534?e=2147483647&v=beta&t=WRDqHhBQaYt9XZ2Y0bcLchholcK9K4MRloo7McDZ4d0",
         "http://media.releasewire.com/photos/show/?id=181471"];
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 3; $i++) { 
             $key = array_rand($nhasanxuat,1);
             $keyanh = array_rand($anh,1);
             $manufacturer = new Manufacturer;
