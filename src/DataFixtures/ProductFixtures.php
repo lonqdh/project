@@ -22,7 +22,7 @@ class ProductFixtures extends Fixture
             $keyanh = array_rand($anh,1);
             $keysize = array_rand($size,1);
             $product = new Product;
-            $product->setName($product[$key])
+            $product->setName($name[$key])
                         ->setImage($anh[$keyanh])
                         ->setDescription("Types of clothes for you")
                         ->setQuantity(rand(10,80))
