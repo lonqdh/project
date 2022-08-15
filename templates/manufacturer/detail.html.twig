@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 text-center mt-3">
+   <div class="row">
+      <div class="col-4">
+         <div>
+           <img src="https://pianofingers.vn/wp-content/uploads/2022/07/Sheet-nha%CC%A3c-Ngo%CC%82i-Sao-Co%CC%82-Do%CC%9Bn-Jack-J97.jpg"  width="300" height="300" alt="">
+         </div>
+      </div>
+      <div class="col-6">
+         <table class="table table-bordered">
+            <tr>
+                <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">Manufacturer Name </h2>
+               </th>
+               <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">{{ manufacturer.name }} </h2>
+               </th>
+            </tr>
+            <tr>
+               <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">Manufacturer image</h2>
+               </th>
+               <th colspan="2" class="bg-light">
+                  <img src="{{ manufacturer.image }}" width="100" height="100">
+               </th>
+            </tr>
+            <tr>
+                <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">Manufacturer Email</h2>
+               </th>
+               <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">{{ manufacturer.email }} </h2>
+               </th>
+            </tr>
+            {# <tr class="h4">
+               <th class="col-md-3">Total product</th>
+               <td class="col-md-7">{{ manufacturer.products | length }}</td>
+            </tr> #}
+
+            {# <tr class="h4">
+               <th class="col-md-3">Book List</th>
+               <td class="col-md-7">
+                  {% if genre.books != null %}
+                     {% for book in genre.books %}
+                        <a href="{{ path('book_detail', {'id' : book.id })}}">
+                           {{ book.title }} 
+                        </a>
+                        <br>
+                     {% endfor %}
+               {% endif %}
+               </td>
+            </tr> #}
+         </table> 
+      </div>
+   </div>
+</div>
+{% endblock %}

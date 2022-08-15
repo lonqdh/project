@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Manufacturer;
+use App\Form\ManufacturerType;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\BrowserKit\Request;
 use App\Repository\ManufacturerRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,18 +17,18 @@ class ManufacturerController extends AbstractController
     #[Route('/index', name: 'manufacturer_index')]
     public function manufacturerIndex () {
         $manufacturers = $this->getDoctrine()->getRepository(Manufacturer::class)->findAll();
-        return $this->render('manufacturer/index.html.twig'
+        return $this->render('manufacturer/index.html.twig',
     [
-       // 'manufacturers' => $manufacturers
+       'manufacturers' => $manufacturers
     ]);
     }
 
     #[Route('/list', name: 'manufacturer_list')]
     public function manufacturerList () {
         $manufacturers = $this->getDoctrine()->getRepository(Manufacturer::class)->findAll();
-        return $this->render('manufacturer/list.html.twig'
+        return $this->render('manufacturer/list.html.twig',
     [
-       // 'manufacturers' => $manufacturers
+        'manufacturers' => $manufacturers
     ]);
     }
 
@@ -76,7 +77,7 @@ class ManufacturerController extends AbstractController
     ]);
     }
 
-    #[Route('/edit/{$id}', name:'manufacturer_edit')]
+    #[Route('/edit/{id}', name:'manufacturer_edit')]
     public function manufacturerEdit ($id, Request $request){
         $manufacturer = $this->getDoctrine()->getRepository(Manufacturer::class)->find($id);
         if ($manufacturer == null){
@@ -89,7 +90,7 @@ class ManufacturerController extends AbstractController
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($manufacturer);
                 $manager->flush();
-                $this->addFlash('Info','Edit author successfully!');
+                $this->addFlash('Info','Edit manufacturer successfully!');
                 return $this->redirectToRoute('manufacturer_index');
             }
             return $this->renderForm('manufacturer/edit.html.twig',
