@@ -12,9 +12,26 @@ class DesignerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('image')
-            ->add('email')
+            ->add('name', TextType::class,[
+                'label' => 'Designer full name',
+                'attr' => [
+                    'minlength' => 10,
+                    'maxlength' => 35
+                ]
+            ])
+            ->add('image', TextType::class,[
+                'label' => 'Designer image',
+                'attr' => [
+                    'maxlength' => 255
+                ]
+            ])
+            ->add('email', TextType::class,[
+                'label' => 'Designer email address',
+                'attr' => [
+                    'minlength' => 12,
+                    'maxlength' => 40
+                ]
+            ])
         ;
     }
 
