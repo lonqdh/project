@@ -12,9 +12,26 @@ class ManufacturerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('image')
-            ->add('email')
+            ->add('name', TextType::class,[
+                'label' => 'Manufacturer name',
+                'attr' => [
+                    'minlength' => 5,
+                    'maxlength' => 35
+                ]
+            ])
+            ->add('image', TextType::class,[
+                'label' => 'Manufacturer image',
+                'attr' => [
+                    'maxlength' => 255
+                ]
+            ])
+            ->add('email', TextType::class,[
+                'label' => 'Manufacturer email',
+                'attr' => [
+                    'minlength' => 12,
+                    'maxlength' => 40
+                ]
+            ])
         ;
     }
 
