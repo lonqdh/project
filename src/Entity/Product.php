@@ -34,22 +34,22 @@ class Product
     private $size;
 
     #[ORM\ManyToOne(targetEntity: Manufacturer::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $manufacturer;
 
     #[ORM\ManyToOne(targetEntity: Designer::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $designer;
 
     #[ORM\ManyToOne(targetEntity: Brand::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $brand;
 
     #[ORM\ManyToMany(targetEntity: Material::class)]
     private $material;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $category;
 
     public function __construct()

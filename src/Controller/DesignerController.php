@@ -62,7 +62,7 @@ class DesignerController extends AbstractController
 
         return $this->render('designer/add.html.twig',
         [
-            'designerForm' => $form ,
+            'designerForm' => $form 
         ]);
     }
 
@@ -86,7 +86,7 @@ class DesignerController extends AbstractController
         }
         return $this->renderForm('designer/edit.html.twig',
         [
-            'designerForm' => $form ,
+            'designerForm' => $form 
         ]);
     }
 

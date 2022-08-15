@@ -18,18 +18,18 @@ class MaterialController extends AbstractController
     #[Route('/index', name: 'material_index')]
     public function materialIndex(): Response
     {
-        $material = $this->getDoctrine()->getRepository(Material::class)->findAll();
+        $materials = $this->getDoctrine()->getRepository(Material::class)->findAll();
         return $this->render('material/index.html.twig', [
-            'material' => $material
+            'materials' => $materials
         ]);
     }
 
     #[Route('/list', name :'material_list')]
     public function materialList()
     {
-        $material = $this->getDoctrine()->getRepository(Material::class)->findAll();
+        $materials = $this->getDoctrine()->getRepository(Material::class)->findAll();
         return $this->render('material/list.html.twig',[
-            'material' => $material
+            'materials' => $materials
         ]);
     }
 
