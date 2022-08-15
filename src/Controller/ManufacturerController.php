@@ -38,9 +38,9 @@ class ManufacturerController extends AbstractController
             $this->addFlash('Warning','Invalid manufacturer');
             return $this->redirectToRoute('manufacturer_index');
         }
-        return $this->render('manufacturer/detail.html.twig'
+        return $this->render('manufacturer/detail.html.twig',
     [
-        // 'manufacturer' => $manufacturer
+        'manufacturer' => $manufacturer
     ]);
     }
 
@@ -70,9 +70,9 @@ class ManufacturerController extends AbstractController
             $this->addFlash('Info','Add manufacturer success');
             return $this->redirectToRoute('manufacturer_index');
         }
-        return $this->renderForm('manufacturer/add.html.twig'
+        return $this->renderForm('manufacturer/add.html.twig',
     [
-        //'authorForm' => $form
+        'manufacturerForm' => $form
     ]);
     }
 
@@ -92,9 +92,9 @@ class ManufacturerController extends AbstractController
                 $this->addFlash('Info','Edit author successfully!');
                 return $this->redirectToRoute('manufacturer_index');
             }
-            return $this->renderForm('manufacturer/edit.html.twig'
+            return $this->renderForm('manufacturer/edit.html.twig',
         [
-            //'authorForm' => $form
+            'manufacturerForm' => $form
         ]);
         }
     }
