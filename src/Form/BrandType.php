@@ -16,7 +16,7 @@ class BrandType extends AbstractType
             ->add('name', TextType::class,[
                 'label' => 'Brand name',
                 'attr' => [
-                    'minlength' => 8,
+                    'minlength' => 5,
                     'maxlength' => 40
                 ]
             ])
@@ -29,14 +29,14 @@ class BrandType extends AbstractType
             ->add('telephone', TextType::class,[
                 'label' => 'Brand phonenumber',
                 'attr' => [
-                    'minlength' => 12,
+                    'minlength' => 8,
                     'maxlength' => 20
                 ]
             ])
             ->add('email', TextType::class,[
                 'label' => 'Brand email',
                 'attr' => [
-                    'minlength' => 12,
+                    'minlength' => 10,
                     'maxlength' => 40
                 ]
             ])

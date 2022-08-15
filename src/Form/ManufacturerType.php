@@ -29,7 +29,7 @@ class ManufacturerType extends AbstractType
             ->add('email', TextType::class,[
                 'label' => 'Manufacturer email',
                 'attr' => [
-                    'minlength' => 12,
+                    'minlength' => 8,
                     'maxlength' => 40
                 ]
             ])

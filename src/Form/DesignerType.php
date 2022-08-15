@@ -16,7 +16,7 @@ class DesignerType extends AbstractType
             ->add('name', TextType::class,[
                 'label' => 'Designer full name',
                 'attr' => [
-                    'minlength' => 10,
+                    'minlength' => 8,
                     'maxlength' => 35
                 ]
             ])
@@ -29,7 +29,7 @@ class DesignerType extends AbstractType
             ->add('email', TextType::class,[
                 'label' => 'Designer email address',
                 'attr' => [
-                    'minlength' => 12,
+                    'minlength' => 8,
                     'maxlength' => 40
                 ]
             ])

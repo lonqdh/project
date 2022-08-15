@@ -38,7 +38,7 @@ class ProductType extends AbstractType
             ->add('description', TextType::class,[
                 'label' => 'Product description',
                 'attr' => [
-                    'minlength' => 10,
+                    'minlength' => 8,
                     'maxlength' => 100
                 ]
             ])

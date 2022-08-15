@@ -29,7 +29,7 @@ class CategoryType extends AbstractType
             ->add('description', TextType::class,[
                 'label' => 'Category description',
                 'attr' => [
-                    'minlength' => 30,
+                    'minlength' => 4,
                     'maxlength' => 500
                 ]
             ])
