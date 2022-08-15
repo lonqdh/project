@@ -66,7 +66,7 @@ class DesignerController extends AbstractController
         ]);
     }
 
-    #[Route('/edit', name: 'designer_edit')]
+    #[Route('/edit{id}', name: 'designer_edit')]
     public function designerEdit($id, Request $request): Response
     {
         $designer = $this->getDoctrine()->getRepository(Designer::class)->find($id);
@@ -90,7 +90,7 @@ class DesignerController extends AbstractController
         ]);
     }
 
-    #[Route('/delete', name: 'designer_delete')]
+    #[Route('/delete{id}', name: 'designer_delete')]
     public function designerDelete($id, ManagerRegistry $managerRegistry): Response
     {
         $designer = $managerRegistry->getRepository(Designer::class)->find($id);
