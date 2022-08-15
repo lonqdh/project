@@ -17,7 +17,7 @@ class BrandController extends AbstractController
     public function brandIndex()
     {
         $brands = $this->getDoctrine()->getRepository(Brand::class)->findAll();
-        return $this->render('author/index.html.twig',
+        return $this->render('brand/index.html.twig',
             [
                 'brands' => $brands
             ]
@@ -28,7 +28,7 @@ class BrandController extends AbstractController
     public function brandList()
     {
         $brands = $this->getDoctrine()->getRepository(Brand::class)->findAll();
-        return $this->render('author/index.html.twig',
+        return $this->render('brand/index.html.twig',
             [
                 'brands' => $brands
             ]
@@ -86,7 +86,7 @@ class BrandController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'brand_edit')]
-    public function authorEdit($id, Request $request)
+    public function brandEdit($id, Request $request)
     {
         $brand = $this->getDoctrine()->getRepository(Brand::class)->find($id);
         if ($brand == null) {
