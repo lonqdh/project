@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-5 text-center mt-3">
+   <div class="card p-3 bg-light">
+      <h3 class="alert alert-primary">Add Designer</h3>
+      {{ form_start (designerForm) }}
+      <div class="form-group">
+         <label class="text text-warning h6">Designer Name</label>
+         {{ form_widget(designerForm.name, {
+            'attr' : {
+               'class' : 'form-control',
+               'placeholder' : 'Enter Designer name'
+            }
+         }) }}
+      </div>
+
+      <div class="form-group">
+         <label class="text text-success h6">Designer Image</label>
+         {{
+            form_widget(designerForm.image, {
+               'attr' : {
+                  'class' : 'form-control',
+                  'placeholder' : 'Enter Designer image'
+               }
+            })
+         }}
+      </div>
+
+      <
+
+      <div class="form-group">
+         <label class="text text-success h6">Designer Email</label>
+         {{
+            form_widget(designerForm.email, {
+               'attr' : {
+                  'class' : 'form-control',
+                  'placeholder' : 'Enter Designer email'
+               }
+            })
+         }}
+      </div>
+      <div class="form-group mt-2">
+            <input class="btn btn-outline-danger" type="submit" value="Add">
+      </div>
+      {{ form_end (designerForm) }}
+   </div>
+</div>
+{% endblock %}

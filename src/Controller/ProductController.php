@@ -17,7 +17,7 @@ class ProductController extends AbstractController
     {
         //$books = $bookRepository->sortBookByIdDesc(); luc sau nho lam
         $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
-        return $this->render('/index.html.twig',
+        return $this->render('product/index.html.twig',
         [
             'products' => $products
         ]);
