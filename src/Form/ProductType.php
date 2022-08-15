@@ -2,13 +2,20 @@
 
 namespace App\Form;
 
-use App\Entity\Manufacturer;
+use App\Entity\Brand;
 use App\Entity\Product;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Category;
+use App\Entity\Designer;
+use App\Entity\Material;
+use App\Entity\Manufacturer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ProductType extends AbstractType
 {
@@ -46,11 +53,13 @@ class ProductType extends AbstractType
                 'label' => 'Product price',
                 'currency'=> 'USD'
             ])
-            ->add('size', TextType::class,[
+            ->add('size', ChoiceType::class,[
                 'label' => 'Product size',
-                'attr' => [
-                    'min' => 1,
-                    'max' => 5
+                'choices' => [
+                    "S"=> "S",
+                    "M"=> "M",
+                    "L"=> "L",
+                    "XL"=> "XL"
                 ]
             ])
 
