@@ -60,10 +60,9 @@ class DesignerController extends AbstractController
                 $this->addFlash('Info','Successfully added');
                 return $this->redirectToRoute('designer_index');
         }
-
         return $this->render('designer/add.html.twig',
         [
-            'designerForm' => $form 
+            'designerForm' => $form ->createView()
         ]);
     }
 
