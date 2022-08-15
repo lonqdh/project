@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Designer;
+use App\Form\DesignerType;
 use App\Repository\DesignerRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class DesignerController extends AbstractController
     #[Route('/list', name: 'designer_list')]
     public function listIndex(): Response
     {
-        $designers = $this->getDoctrine()->getRepository(Designer::class)->findAll;
+        $designers = $this->getDoctrine()->getRepository(Designer::class)->findAll();
         return $this->render('designer/list.html.twig',
         [
             'designers' => $designers ,
@@ -57,7 +58,7 @@ class DesignerController extends AbstractController
                 $manager->persist($designer);
                 $manager->flush();
                 $this->addFlash('Info','Successfully added');
-                return $this->redirectToRoute('designer-index');
+                return $this->redirectToRoute('designer_index');
         }
 
         return $this->render('designer/add.html.twig',
@@ -82,7 +83,7 @@ class DesignerController extends AbstractController
                 $manager->persist($designer);
                 $manager->flush();
                 $this->addFlash('Info','Successfully edited');
-                return $this->redirectToRoute('designer-index');
+                return $this->redirectToRoute('designer_index');
         }
         return $this->renderForm('designer/edit.html.twig',
         [
@@ -103,7 +104,7 @@ class DesignerController extends AbstractController
             $manager->flush();
             $this->addFlash('Info','Successfully deleted');
         }
-        return $this->redirectToRoute('designer-index');
+        return $this->redirectToRoute('designer_index');
     }
 
 
