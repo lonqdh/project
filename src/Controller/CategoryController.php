@@ -2,18 +2,109 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Category;
+use App\Form\CategoryType;
+use App\Repository\CategoryRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
-    #[Route('/category', name: 'app_category')]
-    public function index(): Response
+    #[Route('/index', name: 'category_index')]
+    public function categoryIndex(): Response
     {
-        return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        return $this->render('category/index.html.twig',
+        [
+            'categories' => $categories ,
         ]);
     }
+
+    #[Route('/list', name: 'category_list')]
+    public function listIndex(): Response
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        return $this->render('category/list.html.twig',
+        [
+            'categories' => $categories ,
+        ]);
+    }
+
+    #[Route('/detail/{id}', name: 'category_detail')]
+    public function categoryrDetail ($id, CategoryRepository $categoryRepository) {
+      $category = $categoryRepository->find($id);
+      if ($category == null) {
+          $this->addFlash('Warning', 'Invalid category id ');
+          return $this->redirectToRoute('category_index');
+      }
+      return $this->render('category/detail.html.twig',
+          [
+              'category' => $category
+          ]);
+    }
+
+    #[Route('/add', name: 'category_add')]
+    public function categoryAdd(Request $request): Response
+    {
+        $category = new Category;
+        $form = $this->createForm(CategoryType::class,$category);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+                $manager = $this->getDoctrine()->getManager();
+                $manager->persist($category);
+                $manager->flush();
+                $this->addFlash('Info','Successfully added');
+                return $this->redirectToRoute('category_index');
+        }
+        return $this->render('category/add.html.twig',
+        [
+            'categoryForm' => $form ->createView()
+        ]);
+    }
+
+    #[Route('/edit{id}', name: 'category_edit')]
+    public function categoryEdit($id, Request $request): Response
+    {
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+        if($category == null){
+            $this->addFlash('Warning', 'Category does not exist');
+            return $this->redirectToRoute('category_index');
+        }else{
+            $form = $this->createForm(CategoryType::class,$category);
+            $form->handleRequest($request);
+        }
+        if ($form->isSubmitted() && $form->isValid()){
+            $manager = $this->getDoctrine()->getManager();
+                $manager->persist($category);
+                $manager->flush();
+                $this->addFlash('Info','Successfully edited');
+                return $this->redirectToRoute('category_index');
+        }
+        return $this->renderForm('category/edit.html.twig',
+        [
+            'categoryForm' => $form 
+        ]);
+    }
+
+    #[Route('/delete{id}', name: 'category_delete')]
+    public function categoryDelete($id, ManagerRegistry $managerRegistry): Response
+    {
+        $category = $managerRegistry->getRepository(Category::class)->find($id);
+        if($category == null){
+            $this->addFlash('Warning', 'Category does not exist');
+
+        }else{
+            $manager = $managerRegistry->getManager();
+            $manager->remove($category);
+            $manager->flush();
+            $this->addFlash('Info','Successfully deleted');
+        }
+        return $this->redirectToRoute('category_index');
+    }
+
+
 }

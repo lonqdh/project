@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 text-center mt-3">
+   <div class="row">
+      <div class="col-4">
+         <div>
+           <img src="{{ category.image }}" width="300" height="300">
+         </div>
+      </div>
+      <div class="col-6">
+         <table class="table table-bordered">
+            <tr>
+                <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">Category Name </h2>
+               </th>
+               <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">{{ category.name }} </h2>
+               </th>
+            </tr>
+            <tr>
+               <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">Category image</h2>
+               </th>
+               <th colspan="2" class="bg-light">
+                  <img src="{{ category.image }}" width="100" height="100">
+               </th>
+            </tr> 
+            
+            <tr>
+                <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">Category Description</h2>
+               </th>
+               <th colspan="2" class="bg-light">
+                  <h2 class="text-danger">{{ category.description }} </h2>
+               </th>
+            </tr>
+            {# <tr class="h4">
+               <th class="col-md-3">Total product</th>
+               <td class="col-md-7">{{ brand.products | length }}</td>
+            </tr> #}
+
+            {# <tr class="h4">
+               <th class="col-md-3">Book List</th>
+               <td class="col-md-7">
+                  {% if genre.books != null %}
+                     {% for book in genre.books %}
+                        <a href="{{ path('book_detail', {'id' : book.id })}}">
+                           {{ book.title }} 
+                        </a>
+                        <br>
+                     {% endfor %}
+               {% endif %}
+               </td>
+            </tr> #}
+         </table> 
+      </div>
+   </div>
+</div>
+{% endblock %}
