@@ -48,7 +48,7 @@ class MaterialController extends AbstractController
     public function materialDelete ($id, ManagerRegistry $managerRegistry) {
       $material = $managerRegistry->getRepository(Material::class)->find($id);
       if ($material == null) {
-          $this->addFlash('Warning', 'Material deos not exist !');
+          $this->addFlash('Warning', 'Material does not exist !');
       } 
       //check xem còn product trong material$material hay không trước khi xóa
     //   else if (count($material->getProduct()) > 0) {
