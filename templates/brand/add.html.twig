@@ -1,0 +1,60 @@
+{# format giao diện thủ công => add từng thông tin trong form #}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-5 text-center mt-3">
+   <div class="card p-3 bg-light">
+      <h3 class="alert alert-primary">Add brand</h3>
+      {{ form_start (brandForm) }}
+      <div class="form-group">
+         <label class="text text-warning h6">brand Name</label>
+         {{ form_widget(brandForm.name, {
+            'attr' : {
+               'class' : 'form-control',
+               'placeholder' : 'Enter brand name'
+            }
+         }) }}
+      </div>
+
+      <div class="form-group">
+         <label class="text text-success h6">Color Name</label>
+         {{
+            form_widget(brandForm.color, {
+               'attr' : {
+                  'class' : 'form-control',
+                  'placeholder' : 'Enter color name'
+               }
+            })
+         }}
+      </div>
+
+      <div class="form-group">
+         <label class="text text-success h6">Texture Name</label>
+         {{
+            form_widget(brandForm.texture, {
+               'attr' : {
+                  'class' : 'form-control',
+                  'placeholder' : 'Enter texture name'
+               }
+            })
+         }}
+      </div>
+
+      <div class="form-group">
+         <label class="text text-success h6">Fabric Name</label>
+         {{
+            form_widget(brandForm.fabric, {
+               'attr' : {
+                  'class' : 'form-control',
+                  'placeholder' : 'Enter fabric name'
+               }
+            })
+         }}
+      </div>
+      <div class="form-group mt-2">
+            <input class="btn btn-outline-danger" type="submit" value="Add">
+      </div>
+      {{ form_end (brandForm) }}
+   </div>
+</div>
+{% endblock %}
