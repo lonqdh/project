@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Brand;
+use App\Form\BrandType;
 use App\Repository\BrandRepository;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
