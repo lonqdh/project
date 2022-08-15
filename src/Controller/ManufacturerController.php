@@ -38,9 +38,9 @@ class ManufacturerController extends AbstractController
             $this->addFlash('Warning','Invalid manufacturer');
             return $this->redirectToRoute('manufacturer_index');
         }
-        return $this->render('manufacturer/detail.html.twig'
+        return $this->render('manufacturer/detail.html.twig',
     [
-        // 'manufacturer' => $manufacturer
+        'manufacturer' => $manufacturer
     ]);
     }
 
