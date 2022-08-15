@@ -12,8 +12,8 @@ class DesignerFixtures extends Fixture
     {
         $designername = ["Bo Long dep trai","Thang Viet","Quy ngai Tony"];
         $anh = ["https://fn.vinhphuc.edu.vn/UploadImages/mnlienchau/admin/tho-dong-vat-3%20c%C3%BAn%20con.jpg",
-        "",
-        ""];
+        "https://nhacpro.vn/uploads/articles/ccfeee8d.jpg",
+        "https://vnn-imgs-a1.vgcloud.vn/znews-photo.zadn.vn/Uploaded/izhqv/2020_11_12/viechannelphotos_rap_viet_tap_15_thi_sinh_rpt_mck_1_16050204487251365930315_crop_1605020583124889154191.jpg"];
 
         for ($i=0; $i < 3; $i++) { 
             $key = array_rand($designername,1);
