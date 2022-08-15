@@ -16,7 +16,7 @@ class DesignerController extends AbstractController
     #[Route('/index', name: 'designer_index')]
     public function designerIndex(): Response
     {
-        $designers = $this->getDoctrine()->getRepository(Designer::class)->findAll;
+        $designers = $this->getDoctrine()->getRepository(Designer::class)->findAll();
         return $this->render('designer/index.html.twig',
         [
             'designers' => $designers ,
