@@ -81,6 +81,7 @@ class MaterialController extends AbstractController
       ]);
     }
 
+    #[Route('/edit/{id}', name: 'material_edit')]
     public function materialEdit ($id, Request $request) {
         $material = $this->getDoctrine()->getRepository(Material::class)->find($id);
         if ($material == null) {

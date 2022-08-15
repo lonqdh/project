@@ -15,19 +15,23 @@
     </tr>
     <tr>
         <th class="text text-success">Material Id</th>
-        <th class="text text-success">material Name</th>
-        <th class="text text-success">material Image</th>
+        <th class="text text-success">Material Name</th>
+        <th class="text text-success">Material Color</th>
+        <th class="text text-success">Material Texture</th>
+        <th class="text text-success">Material Fabric</th>
         <th class="text text-success">Actions</th>
     </tr>
     {% for material in materials %}
         <tr>
             <td>{{ material.id }}</td>
-            <td>{{ material.name }}</td>
             <td>
                 <a class="text-decoration-none" href="{{ path('material_detail', {'id' : material.id }) }}">
-                    <img src="{{ material.image }}" width="100" height="100">
+                    {{material.name}}
                 </a>
            </td>
+           <td>{{ material.color }}</td>
+           <td>{{ material.texture }}</td>
+           <td>{{ material.fabric }}</td>
             <td>
                 <a class="text-decoration-none" href="{{ path('material_detail', {'id' : material.id }) }}">
                     <img src="{{ asset('images/buttons/detail.png') }}" width="40" height="40">
