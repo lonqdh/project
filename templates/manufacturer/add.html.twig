@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-5 text-center mt-3">
+   <div class="card p-3 bg-light">
+      <h3 class="alert alert-primary">Add Manufacturer</h3>
+      {{ form_start (manufacturerForm) }}
+      <div class="form-group">
+         <label class="text text-warning h6">Manufacturer Name</label>
+         {{ form_widget(manufacturerForm.name, {
+            'attr' : {
+               'class' : 'form-control',
+               'placeholder' : 'Enter manufacturer name'
+            }
+         }) }}
+      </div>
+
+      <div class="form-group">
+         <label class="text text-success h6">Manufacturer Image</label>
+         {{
+            form_widget(manufacturerForm.image, {
+               'attr' : {
+                  'class' : 'form-control',
+                  'placeholder' : 'Enter manufacturer image'
+               }
+            })
+         }}
+      </div>
+
+      <div class="form-group">
+         <label class="text text-success h6">Manufacturer Email</label>
+         {{
+            form_widget(manufacturerForm.email, {
+               'attr' : {
+                  'class' : 'form-control',
+                  'placeholder' : 'Enter manufacturer email'
+               }
+            })
+         }}
+      </div>
+      <div class="form-group mt-2">
+            <input class="btn btn-outline-danger" type="submit" value="Add">
+      </div>
+      {{ form_end (manufacturerForm) }}
+   </div>
+</div>
+{% endblock %}
