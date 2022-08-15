@@ -34,7 +34,7 @@ class ManufacturerController extends AbstractController
     #[Route('/detail/{id}', name: 'manufacturer_detail')]
     public function manufacturerDetail ($id, ManufacturerRepository $manufacturerRepository) {
         $manufacturer = $manufacturerRepository->find($id);
-        if($manufacturer ==null){
+        if($manufacturer == null){
             $this->addFlash('Warning','Invalid manufacturer');
             return $this->redirectToRoute('manufacturer_index');
         }
