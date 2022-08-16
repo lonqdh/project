@@ -64,6 +64,24 @@ class ProductRepository extends ServiceEntityRepository
     }
     */
 
+    public function sortProductPriceDesc()
+    {
+        return $this->createQueryBuilder('product')
+            ->orderBy('product.price', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function sortProductPriceAsc()
+    {
+        return $this->createQueryBuilder('product')
+            ->orderBy('product.price', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Product
     {
@@ -75,4 +93,41 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function searchProduct($keyword) 
+    {
+        return $this->createQueryBuilder('product')
+            ->andWhere('product.name LIKE :key')
+            ->setParameter('key', '%' . $keyword . '%')
+            ->orderBy('product.price', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function sortBestSellingProducts()
+    {
+        return $this->createQueryBuilder('product')
+        ->orderBy('product.quantity', 'ASC')
+            ->setMaxResults(2)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function sortCategoryShorts()
+    {
+        return $this->createQueryBuilder('product')
+        ->orderBy('product.category.name', 'ASC')
+            ->setMaxResults(2)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
+
+
 }

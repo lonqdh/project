@@ -6,10 +6,11 @@ use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/product')]
 class ProductController extends AbstractController
@@ -111,5 +112,48 @@ class ProductController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_CUSTOMER')]
+    #[Route('/price/asc', name: 'sort_price_ascending')]
+    public function sortPriceAscending (ProductRepository $productRepository) {
+      $products = $productRepository->sortProductPriceAsc();
+      return $this->render('product/home.html.twig', 
+      [
+          'products' => $products
+      ]);
+    }
+  
+    #[IsGranted('ROLE_CUSTOMER')]
+    #[Route('/price/desc', name: 'sort_price_descending')]
+    public function sortPriceDescending (ProductRepository $productRepository) {
+      $products = $productRepository->sortProductPriceDesc();
+      return $this->render('product/home.html.twig', 
+      [
+          'products' => $products
+      ]);
+    }
 
+    #[IsGranted('ROLE_CUSTOMER')]
+    #[Route('/search', name: 'search_book')]
+    public function searchProduct(ProductRepository $productRepository, Request $request) {
+        $products = $productRepository->searchProduct($request->get('keyword'));
+        // if ($books == null) {
+        //   $this->addFlash("Warning", "No book found !");
+        // }
+        $session = $request->getSession();
+        $session->set('search', true);
+        return $this->render('product/home.html.twig', 
+        [
+            'products' => $products,
+        ]);
+    }
+
+    #[IsGranted('ROLE_CUSTOMER')]
+    #[Route('/bestselling/asc', name: 'sort_bestselling_ascending')]
+    public function sortBestSellingProducts(ProductRepository $productRepository, Request $request) {
+        $products = $productRepository->sortBestSellingProducts();
+        return $this->render('product/home.html.twig', 
+        [
+            'products' => $products,
+        ]);
+    }
 }
