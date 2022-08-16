@@ -232,8 +232,9 @@ button:hover {
          </a>
          {% endfor %}
       {% endif %}
-    <h2>${{product.price}}</h2>
     <p class="desc">{{product.description}}</p>
+    {% if product.quantity >= 1 %}
+    <h2>${{product.price}}</h2>
     <div class="buttons">
       <form action="{{ path('add_to_cart')}}" method="post">
 					<input type="hidden" name="productid" value="{{ product.id }}">
@@ -243,6 +244,12 @@ button:hover {
 			</form> 
       <button class="like"><span>♥</span></button>
     </div>
+    {% else %}
+          <h2>${{product.price}}</h2>
+      		<h5 class="text text-danger">
+							Out of stock
+					</h5>
+    {% endif %}
   </div>
 </div>
 
