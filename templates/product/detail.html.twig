@@ -124,10 +124,6 @@ button:hover {
   width: 50%;
 }
 
-.like {
-  width: 22%;
-}
-
 .sizes {
   display: grid;
   color: #ffffff;
@@ -188,7 +184,7 @@ button:hover {
 
 </style>
 
-<div class="container col-10 mt-3">
+
 				{# bs5-nav-ul #}
 				{% if is_granted('ROLE_ADMIN') %}
 					<ul class="nav justify-content-center bg-warning">
@@ -299,7 +295,7 @@ button:hover {
 					<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
 					<br>
 					<input class="add" type="submit" value="Add to cart">
-          <button class="like"><span>♥</span></button>
+
 			</form> 
     </div>
     {% else %}

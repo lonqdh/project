@@ -7,7 +7,9 @@
 {# override header (navigation) #}
 {% block header %} {% endblock %}
 
+
 {% block body %}
+<body class="login">
 <div class="container col-md-6 card p-3 bg-light">
 <form method="post">
     {% if error %}
@@ -49,6 +51,7 @@
 
 </form>
 </div>
+</body>
 {% endblock %}
 
 {# override footer (copyright) #}

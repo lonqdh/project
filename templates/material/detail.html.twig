@@ -1,67 +1,73 @@
 {% extends "base.html.twig" %}
+{% block header %}
+<style>
+
+/* center container in the middle */
+html {
+  display: grid;
+  min-height: 100%;
+}
+
+body {
+  display: grid;
+  background: #E0C9CB;
+  font-family: sans-serif;
+
+}
+
+.container {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  width: 430px;
+  height: 550px;
+  background: #F5F5F5;
+  box-shadow: 5px 5px 15px rgba(#BA7E7E, .5);
+  border-radius: 10px;
+}
+
+p {
+  font-size: 1.1em;
+  color: #BA7E7E;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 1.5em;
+  color: #4E4E4E;
+  margin-top: -5px;
+}
+
+img {
+  width: 330px;
+  height: 350px;
+  margin: auto;
+  margin-top: 30px;
+  display: block;
+}
+
+
+
+</style>
+
+
+{% endblock %}
+
 
 {% block body %}
-<div class="container col-md-8 text-center mt-3">
-   <div class="row">
-      <div class="col-4">
-         <div>
-           <img src="https://pianofingers.vn/wp-content/uploads/2022/07/Sheet-nha%CC%A3c-Ngo%CC%82i-Sao-Co%CC%82-Do%CC%9Bn-Jack-J97.jpg"  width="300" height="300" alt="">
-         </div>
-      </div>
-      <div class="col-6">
-         <table class="table table-bordered">
-            <tr>
-                <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">Material Name </h2>
-               </th>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">{{ material.name }} </h2>
-               </th>
-            </tr>
-            <tr>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">Material Color </h2>
-               </th>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">{{ material.color }} </h2>
-               </th>
-            </tr>
-            <tr>
-                <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">Material Texture </h2>
-               </th>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">{{ material.texture }} </h2>
-               </th>
-            </tr>
-            <tr>
-                <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">Material Fabric </h2>
-               </th>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">{{ material.fabric }} </h2>
-               </th>
-            </tr>
-            {# <tr class="h4">
-               <th class="col-md-3">Total product</th>
-               <td class="col-md-7">{{ material.products | length }}</td>
-            </tr> #}
-
-            {# <tr class="h4">
-               <th class="col-md-3">Book List</th>
-               <td class="col-md-7">
-                  {% if genre.books != null %}
-                     {% for book in genre.books %}
-                        <a href="{{ path('book_detail', {'id' : book.id })}}">
-                           {{ book.title }} 
-                        </a>
-                        <br>
-                     {% endfor %}
-               {% endif %}
-               </td>
-            </tr> #}
+<div class="container">
+<img src="https://cdn.shopify.com/s/files/1/0278/1442/8759/articles/woven-non-woven_1000x.png?v=1600089117" alt="">
+  <br><br>
+         <h1>Material Name: {{material.name}}</h1>
+         <p>Material Color: {{material.color}} <br>
+         Material Texture: {{material.texture}} <br>
+         Material Fabric: {{material.fabric}}</p>
+           
          </table> 
       </div>
    </div>
 </div>
 {% endblock %}
+
+{% block flash %}{% endblock %}
+{% block footer %}{% endblock %}
