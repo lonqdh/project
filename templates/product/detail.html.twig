@@ -57,17 +57,13 @@
                 </td>
             </tr>
             <tr class="h4">
-               <th>Designer(s)</th>
+               <th>Designer</th>
                <td>
                {% if product.designer == null %}
                   <i>Undefined</i>
                {% else %}
-                  {% for desginer in product.designers %}
-                    <a class="text-decoration-none" href="{{ path('designer_detail', {'id' : designer.id })}}">
-                     {{ desginer.name }} 
-                    </a>
-                     <br>
-                  {% endfor %}
+                    <a class="text-decoration-none" href="{{ path('designer_detail', {'id' : product.designer.id })}}">
+                     {{ product.designer.name }} 
                {% endif %}
                </td>
             </tr>
@@ -89,7 +85,7 @@
                <th>Material</th>
                 <td>
                {% if product.material != null %}
-                  {% for material in product.materials %} {# Chu y xem #}
+                  {% for material in product.material %} 
                   <a class="text-decoration-none" href="{{ path('material_detail', {'id' : material.id })}}">
                      {{ material.name }}
                   </a>    
@@ -112,9 +108,7 @@
                      <i>N/A</i>
                {% endif %}
              </td>
-            </tr>
-
-            
+            </tr>            
          </table>
       </div>
    </div>

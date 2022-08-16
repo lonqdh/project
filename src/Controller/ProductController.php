@@ -25,11 +25,11 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/list', name :'product_list')]
+    #[Route('/home', name :'product_home')]
     public function productList()
     {
         $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
-        return $this->render('product/list.html.twig',[
+        return $this->render('home/home.html.twig',[
             'products' => $products
         ]);
     }
