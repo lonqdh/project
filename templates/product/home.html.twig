@@ -40,18 +40,18 @@
                                     </h5> 
                                 
                                 
-                                {# <div class="card card-footer mt-1"> #}
+                                 <div class="card card-footer mt-1"> 
 										{# gửi dữ liệu sang action addToCart trong CartController #}
-										{# <form action="{{ path('add_to_cart')}}" method="post">
-											<input type="hidden" name="bookid" value="{{ book.id }}">
-											<input type="number" name="quantity" min="1" max="{{ book.quantity }}">
+										 <form action="{{ path('add_to_cart')}}" method="post">
+											<input type="hidden" name="productid" value="{{ product.id }}">
+											<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
 											<br>
 											<input class="btn btn-success mt-3" type="submit" value="Add to cart">
-										</form> #}
+										</form> 
                                 {% else %}
                                     <h5 class="text text-primary">
 											Price:
-											{{ book.price }}
+											{{ product.price }}
 											$
 										</h5>
 										<h5 class="text text-danger">
