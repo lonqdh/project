@@ -62,7 +62,6 @@ class CartController extends AbstractController
         $this->addFlash('Info', 'Order successfully !');
   
         //redirect về trang book store
-        return $this->redirectToRoute('product_list',
-    );
+        return $this->redirectToRoute('product_home');
     }
 }
