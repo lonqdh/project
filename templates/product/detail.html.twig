@@ -82,7 +82,7 @@ img {
 
 .product {
   position: absolute;
-  width: 40%;
+  width: 50%;
   height: 100%;
   top: 10%;
   left: 60%;
@@ -92,7 +92,7 @@ img {
   text-transform: none;
   letter-spacing: 0;
   margin-bottom: 17px;
-  color: #333;
+  color: #4E4E4E;
   font-size: .7em;
   line-height: 1.6em;
   margin-right: 25px;
@@ -121,7 +121,7 @@ button:hover {
 }
 
 .add {
-  width: 67%;
+  width: 50%;
 }
 
 .like {
@@ -138,10 +138,6 @@ button:hover {
   margin-top: 5px;
 }
 
-.sizes:hover{
-   cursor: pointer;
-}
-
 .pick {
   margin-top: 11px;
   margin-bottom:0;
@@ -156,10 +152,18 @@ button:hover {
 } 
 
 .sizes:hover {
-   background: #BA7E7E;
+    cursor: pointer;
+    background: #BA7E7E;
     color: #ffffff;
     transition: all .4s ease-in-out;
 
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 {# footer {
@@ -184,6 +188,59 @@ button:hover {
 
 </style>
 
+<div class="container col-10 mt-3">
+				{# bs5-nav-ul #}
+				{% if is_granted('ROLE_ADMIN') %}
+					<ul class="nav justify-content-center bg-warning">
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" href="{{ path('product_home')}}">Home</a>
+						</li>
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" href="{{ path('product_index')}}">Product</a>
+						</li>
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" href="{{ path('designer_index')}}">Designer</a>
+						</li>
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" href="{{ path('category_index')}}">Category</a>
+						</li>
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" href="{{ path('app_logout')}}">Logout
+								<u>
+									<i>
+										{% if app.user != null %}
+											({{ app.user.username }})
+										{% endif %}
+									</i>
+								</u>
+							</a>
+						</li>
+					</ul>
+				{% else %}
+					<!-- ROLE_CUSTOMER -->
+					<ul class="nav justify-content-center bg-warning">
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" href="{{ path('product_home')}}">Store</a>
+						</li>
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" data-bs-toggle="modal" data-bs-target="#modelId">About</a>
+						</li>
+						<li class="nav-item h1">
+							<a class="nav-link text-danger" href="{{ path('app_logout')}}">Logout
+								<u>
+									<i>
+										{% if app.user != null %}
+											({{ app.user.username }})
+										{% endif %}
+									</i>
+								</u>
+							</a>
+						</li>
+					</ul>
+				{% endif %}
+
+			</div>
+			{# bs5-modal-default #}
 
 
 {% endblock %}
@@ -198,12 +255,13 @@ button:hover {
   </div>
   <p class="pick">choose size</p>
   <div class="sizes">
-   <h3>{{product.size}}</h3>
+   <div class="size">{{product.size}}</div>
     {# <div class="size">S</div>
     <div class="size">M</div>
     <div class="size">L</div>
     <div class="size">XL</div> #}
   </div>
+  
   <div class="product">
     <p>
     <a class="text-decoration-none" href="{{ path('category_detail', {'id' : product.category.id })}}">
@@ -241,8 +299,8 @@ button:hover {
 					<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
 					<br>
 					<input class="add" type="submit" value="Add to cart">
+          <button class="like"><span>♥</span></button>
 			</form> 
-      <button class="like"><span>♥</span></button>
     </div>
     {% else %}
           <h2>${{product.price}}</h2>
