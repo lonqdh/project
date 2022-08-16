@@ -213,12 +213,15 @@ button:hover {
     <h1>{{product.name}}</h1>
     <p><a class="text-decoration-none" href="{{ path('designer_detail', {'id' : product.designer.id })}}">
     {{product.designer.name}}
+    </a>
     </p>
     <p><a class="text-decoration-none" href="{{ path('manufacturer_detail', {'id' : product.manufacturer.id })}}">
     {{product.manufacturer.name}}
+    </a>
     </p>
     <p><a class="text-decoration-none" href="{{ path('brand_detail', {'id' : product.brand.id })}}">
     {{product.brand.name}}
+    </a>
     </p>
       {% if product.material == null %}
          <p>No material !</p>
