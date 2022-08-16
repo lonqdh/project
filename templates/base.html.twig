@@ -21,24 +21,23 @@
 	</head>
 	<body>
 		{% block header %}
-			<div
-				class="container col-10 mt-3">
+			<div class="container col-10 mt-3">
 				{# bs5-nav-ul #}
-				{% if is_granted('ROLE_ADMIN') %}
+				{# {% if is_granted('ROLE_ADMIN') %} #}
 					<ul class="nav justify-content-center bg-warning">
 						<li class="nav-item h1">
 							<a class="nav-link text-danger" href="{{ path('home')}}">Home</a>
 						</li>
 						<li class="nav-item h1">
-							<a class="nav-link text-danger" href="{{ path('book_index')}}">Book</a>
+							<a class="nav-link text-danger" href="{{ path('product_index')}}">Product</a>
 						</li>
 						<li class="nav-item h1">
-							<a class="nav-link text-danger" href="{{ path('author_index')}}">Author</a>
+							<a class="nav-link text-danger" href="{{ path('designer_index')}}">Designer</a>
 						</li>
 						<li class="nav-item h1">
-							<a class="nav-link text-danger" href="{{ path('genre_index')}}">Genre</a>
+							<a class="nav-link text-danger" href="{{ path('category_index')}}">Category</a>
 						</li>
-						<li class="nav-item h1">
+						{# <li class="nav-item h1">
 							<a class="nav-link text-danger" href="{{ path('app_logout')}}">Logout
 								<u>
 									<i>
@@ -48,7 +47,7 @@
 									</i>
 								</u>
 							</a>
-						</li>
+						</li> #}
 					</ul>
 				{# {% else %}
 					<!-- ROLE_CUSTOMER -->
@@ -71,7 +70,7 @@
 							</a>
 						</li>
 					</ul> #}
-				{% endif %}
+				{# {% endif %} #}
 
 			</div>
 			{# bs5-modal-default #}
