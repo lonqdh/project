@@ -50,7 +50,7 @@ h2 {
 }
 
 img {
-  width: 50%;
+  width: 35%;
   margin-top: 47px;
 }
 
@@ -235,7 +235,12 @@ button:hover {
     <h2>${{product.price}}</h2>
     <p class="desc">{{product.description}}</p>
     <div class="buttons">
-      <button class="add">Add to Cart</button>
+      <form action="{{ path('add_to_cart')}}" method="post">
+					<input type="hidden" name="productid" value="{{ product.id }}">
+					<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
+					<br>
+					<input class="add" type="submit" value="Add to cart">
+			</form> 
       <button class="like"><span>♥</span></button>
     </div>
   </div>
