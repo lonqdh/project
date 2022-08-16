@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+    <div class="container">
+        <h1 class="text text-danger">
+            BanhBoiz Clothing Store
+        </h1>
+
+
+        {% if products | length == 0 %}
+            <h1 class="text text-danger mt-4 mb-4">
+                No product found!
+            </h1>
+        {% else %}
+            <p class="text-info h3 mt-3">
+                Total products : {{products | length}}
+            </p>
+            
+            <div class="card-group">
+                <div class="row">
+                    {% for product in products %}
+                        {% if books | length < 4 %}
+                            <div class="col mt-4">
+                        {% else %}
+                            <div class="col-md-3 mt-4">
+                        {% endif %}
+                        
+                        </div>
+                        
+                        
+                        
+                        
+                        {% endif %}
+                    {% endfor %}
+                
+                </div>    
+            
+            
+            </div>
+
+        {% endif %}
+    
+    
+    
+    </div>
+
+
+
+
+{% endblock %}
+
