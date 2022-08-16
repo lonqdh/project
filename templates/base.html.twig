@@ -61,7 +61,7 @@
 		{% block header %}
 			<div class="container col-10 mt-3">
 				{# bs5-nav-ul #}
-				{# {% if is_granted('ROLE_ADMIN') %} #}
+				{% if is_granted('ROLE_ADMIN') %}
 					<ul class="nav justify-content-center bg-warning">
 						<li class="nav-item h1">
 							<a class="nav-link text-danger" href="{{ path('product_home')}}">Home</a>
@@ -108,7 +108,7 @@
 							</a>
 						</li>
 					</ul> #}
-				{# {% endif %} #}
+				{% endif %}
 
 			</div>
 			{# bs5-modal-default #}
