@@ -1,116 +1,249 @@
 {% extends "base.html.twig" %}
 
-{% block body %}
-<div class="container col-md-8 text-center mt-3">
-   <div class="row">
-      {# <div class="col-4">
-         <div class="card">
-            <img src="{{ asset('images/products/'~product.image)}}" width="300" height="300">
-         </div>
-      </div> #}
-      <div class="col-8">
-         <table class="table table-bordered">
-            <tr>
-               <th colspan="2" class="bg-light">
-                  <h2 class="text-danger">{{ product.name }} </h2>
-               </th>
-            </tr>
-            {# <tr class="h4">
-               <th>Published Date</th>
-               <td>{{ product.date | date('d/m/Y')}}</td>
-            </tr> #}
-            <tr class="h4">
-               <th>Product Image</th>
-               <td><img src="{{ product.image }} " width="100" height="100" alt=""></td>
-            </tr>
-            <tr class="h4">
-               <th>Product Description</th>
-               <td>{{ product.description }} </td>
-            </tr>
-            <tr class="h4">
-               <th>Product Price</th>
-               <td>${{ product.price }} </td>
-            </tr>
-            <tr class="h4">
-               <th>Product Size</th>
-               <td>${{ product.size }} </td>
-            </tr>
-            <tr class="h4">
-            {% if product.quantity >= 1 %}
-               <th>Product Quantity</th>
-               <td>{{ product.quantity }}</td>
-            {% else %}
-               <th>Product Quantity</th>
-               <td>Out of stock</td>
-            {% endif %}           
-            </tr>
-            <tr class="h4">
-               <th>Category</th>
-               <td>
-               {% if product.category != null %}
-                  <a class="text-decoration-none" href="{{ path('category_detail', {'id' : product.category.id })}}">
-                     {{ product.category.name }}
-                  </a>    
-               {% else %}
-                     <i>N/A</i>
-               {% endif %}
-                </td>
-            </tr>
-            <tr class="h4">
-               <th>Designer</th>
-               <td>
-               {% if product.designer == null %}
-                  <i>Undefined</i>
-               {% else %}
-                    <a class="text-decoration-none" href="{{ path('designer_detail', {'id' : product.designer.id })}}">
-                     {{ product.designer.name }} 
-               {% endif %}
-               </td>
-            </tr>
+{% block header %}
+<style>
 
-            <tr class="h4">
-               <th>Manufacturer</th>
-                <td>
-               {% if product.manufacturer != null %}
-                  <a class="text-decoration-none" href="{{ path('manufacturer_detail', {'id' : product.manufacturer.id })}}">
-                     {{ product.manufacturer.name }}
-                  </a>    
-               {% else %}
-                     <i>N/A</i>
-               {% endif %}
-             </td>
-            </tr>
+/* center container in the middle */
+html {
+  display: grid;
+  min-height: 100%;
+}
 
-            <tr class="h4">
-               <th>Material</th>
-                <td>
-               {% if product.material != null %}
-                  {% for material in product.material %} 
-                  <a class="text-decoration-none" href="{{ path('material_detail', {'id' : material.id })}}">
-                     {{ material.name }}
-                  </a>    
-                     <br>
-                  {% endfor %}
-               {% else %}
-                     <i>N/A</i>
-               {% endif %}
-               </td>
-            </tr>
+body {
+  display: grid;
+  background: #E0C9CB;
+  font-family: $font, sans-serif;
+  text-transform: uppercase;
+}
 
-            <tr class="h4">
-               <th>Brand</th>
-                <td>
-               {% if product.brand != null %}
-                  <a class="text-decoration-none" href="{{ path('brand_detail', {'id' : product.brand.id })}}">
-                     {{ product.brand.name }}
-                  </a>    
-               {% else %}
-                     <i>N/A</i>
-               {% endif %}
-             </td>
-            </tr>            
-         </table>
-      </div>
-   </div>
-</div>
+.container {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  width: 520px;
+  height: 400px;
+  background: #F5F5F5;
+  box-shadow: 5px 5px 15px rgba(#BA7E7E, .5);
+  border-radius: 10px;
+}
+
+p {
+  font-size: 0.6em;
+  color: #BA7E7E;
+  letter-spacing: 1px;
+}
+
+p a {
+  color: #BA7E7E;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 1.2em;
+  color: #4E4E4E;
+  margin-top: -5px;
+}
+
+h2 {
+  color: #C3A1A0;
+  margin-top: -5px;
+}
+
+img {
+  width: 50%;
+  margin-top: 47px;
+}
+
+.slideshow-buttons {
+  top: 70%;
+  display: none;
+}
+{# 
+.one, .two, .three, .four {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #444;
+} #}
+{# 
+.one {
+  left: 22%;
+}
+.two {
+  left: 27%;
+}
+.three {
+  left: 32%;
+}
+.four {
+  left: 37%;
+} #}
+
+.product {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  top: 10%;
+  left: 60%;
+}
+
+.desc {
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 17px;
+  color: #333;
+  font-size: .7em;
+  line-height: 1.6em;
+  margin-right: 25px;
+  text-align: justify;
+}
+
+button {
+  background: darken(#E0C9CB, 10%);
+  padding: 10px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  margin: -1px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #BA7E7E;
+  cursor: pointer;
+}
+button:hover {
+    background: #ffff;
+    transition: all .4s ease-in-out;
+}
+
+.add {
+  width: 67%;
+}
+
+.like {
+  width: 22%;
+}
+
+.sizes {
+  display: grid;
+  color: #ffffff;
+  grid-template-columns: repeat(auto-fill, 30px);
+  width: 60%;
+  grid-gap: 4px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.sizes:hover{
+   cursor: pointer;
+}
+
+.pick {
+  margin-top: 11px;
+  margin-bottom:0;
+  margin-left: 20px;
+}
+
+.size {
+  padding: 9px;
+  border: 1px solid #E0C9CB;
+  font-size: 0.7em;
+  text-align: center;
+} 
+
+.size:hover {
+   background: #BA7E7E;
+    color: $white;
+    transition: all .4s ease-in-out;
+
+}
+
+.focus{
+  background: #BA7E7E;
+  color: $white;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  padding: 10px;
+  p {
+    letter-spacing: 3px;
+  }
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    &:hover {
+      color: #7d7d7d;
+    }
+  }
+}
+
+
+</style>
+
+
+
 {% endblock %}
+
+
+
+
+{% block body %}
+<div class="container">
+  <div class="images">
+    <img src="{{product.image}}" />
+  </div>
+  <p class="pick">choose size</p>
+  <div class="sizes">
+   <h3>{{product.size}}</h3>
+    {# <div class="size">S</div>
+    <div class="size">M</div>
+    <div class="size">L</div>
+    <div class="size">XL</div> #}
+  </div>
+  <div class="product">
+    <p>
+    <a class="text-decoration-none" href="{{ path('category_detail', {'id' : product.category.id })}}">
+    {{product.category.name}}
+    </p>
+    <h1>{{product.name}}</h1>
+    <p><a class="text-decoration-none" href="{{ path('designer_detail', {'id' : product.designer.id })}}">
+    {{product.designer.name}}
+    </p>
+    <p><a class="text-decoration-none" href="{{ path('manufacturer_detail', {'id' : product.manufacturer.id })}}">
+    {{product.manufacturer.name}}
+    </p>
+    <p><a class="text-decoration-none" href="{{ path('brand_detail', {'id' : product.brand.id })}}">
+    {{product.brand.name}}
+    </p>
+      {% if product.material == null %}
+         <p>No material !</p>
+      {% else %}
+         {% for material in product.material %}
+         <a class="text-decoration-none" href="{{ path('material_detail', {'id' : material.id })}}">
+         <p>{{material.name}}</p>
+         </a>
+         {% endfor %}
+      {% endif %}
+    <h2>${{product.price}}</h2>
+    <p class="desc">{{product.description}}</p>
+    <div class="buttons">
+      <button class="add">Add to Cart</button>
+      <button class="like"><span>♥</span></button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  
+</footer>
+{% endblock %}
+
+{% block flash %}{% endblock %}
+
+{% block footer %}{% endblock %}
