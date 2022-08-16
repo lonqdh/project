@@ -24,9 +24,9 @@
                         {% else %}
                             <div class="col-md-3 mt-4">
                         {% endif %}
-                                {# <div class="card">
+                                <div class="card">
                                     <a href="{{ path('product_detail', {'id' : product.id })}}">
-										<img src="{{ asset('images/products/'~product.image) }}" width="150" height="150">
+										<img src="{{ product.image }}" width="150" height="150">
 									</a>
                                     <h3 class="text text-success">
 										{{ product.name }}
@@ -37,7 +37,7 @@
                                     </h5>
                                     <h5 class="text text-danger">
                                         Quantity : {{product.quantity}}
-                                    </h5> #}
+                                    </h5> 
                                 
                                 
                                 {# <div class="card card-footer mt-1"> #}
@@ -48,7 +48,7 @@
 											<br>
 											<input class="btn btn-success mt-3" type="submit" value="Add to cart">
 										</form> #}
-                                {# {% else %}
+                                {% else %}
                                     <h5 class="text text-primary">
 											Price:
 											{{ book.price }}
@@ -57,14 +57,14 @@
 										<h5 class="text text-danger">
 											Out of stock
 										</h5>
-                                {% endif %} #}
-                                <div class="card">
-                                    <img src="{{asset('')}}" alt="Denim Jeans" style="width:100%">
-                                    <h1>Tailored Jeans</h1>
-                                    <p class="price">$19.99</p>
-                                    <p>Some text about the jeans..</p>
+                                {% endif %}
+                                {# <div class="card">
+                                    <img src="{{product.image}}" alt="Long Dep Trai" width="150" height="150">
+                                    <h1>{{product.name}}</h1>
+                                    <p class="price">${{product.price}}</p>
+                                    <p>Quantity : {{product.quantity}}</p>
                                     <p><button>Add to Cart</button></p>
-                                </div>
+                                </div> #}
                                     
                                 
                                 </div>
