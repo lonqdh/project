@@ -12,9 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 #[Route('/product')]
 class ProductController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/index', name: 'product_index')]
     public function productIndex(): Response
     {
@@ -26,6 +28,7 @@ class ProductController extends AbstractController
         ]);
     }
 
+
     #[Route('/home', name :'product_home')]
     public function productList()
     {
@@ -36,6 +39,7 @@ class ProductController extends AbstractController
         ]);
     }
 
+    
     #[Route('/detail/{id}', name : 'product_detail')]
     public function productDetail($id, ProductRepository $productRepository){
         $product = $productRepository->find($id);
@@ -46,7 +50,7 @@ class ProductController extends AbstractController
             ]);
         }
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete/{id}', name: 'product_delete')]
     public function productDelete ($id, ManagerRegistry $managerRegistry) {
       $product = $managerRegistry->getRepository(Product::class)->find($id);
@@ -66,6 +70,7 @@ class ProductController extends AbstractController
       return $this->redirectToRoute('product_index');
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit/{id}',name: 'product_edit')]
     public function productEdit ($id,ManagerRegistry $managerRegistry,Request $request)
     {
@@ -92,7 +97,8 @@ class ProductController extends AbstractController
             'productForm' => $productForm
         ]);
     }
-
+    
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/add',name:'product_add')]
     public function productAdd(Request $request)
     {
@@ -133,7 +139,7 @@ class ProductController extends AbstractController
     }
 
     #[IsGranted('ROLE_CUSTOMER')]
-    #[Route('/search', name: 'search_book')]
+    #[Route('/search', name: 'search_product')]
     public function searchProduct(ProductRepository $productRepository, Request $request) {
         $products = $productRepository->searchProduct($request->get('keyword'));
         // if ($books == null) {
