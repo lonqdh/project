@@ -56,6 +56,7 @@ class MaterialController extends AbstractController
     //   else if (count($material->getProduct()) > 0) {
     //     $this->addFlash('Warning', 'Can not delete this material !');
     //   }  nho uncomment sau khi tao product !!!
+    
       else {
           $manager = $managerRegistry->getManager();
           $manager->remove($material);
