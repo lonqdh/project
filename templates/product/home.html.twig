@@ -75,9 +75,9 @@
                                     <h5 class="text text-danger fs-6">
                                         Quantity : {{product.quantity}}
                                     </h5> 
-                                 {# <div class="card card-footer mt-1">  #}
+                                 
 										{# gửi dữ liệu sang action addToCart trong CartController #}
-										 <form action="{{ path('add_to_cart')}}" method="post">
+										 <form action="{{ path('add_to_cart')}}" method="post"> 
 											<input type="hidden" name="productid" value="{{ product.id }}">
 											<input type="number" name="quantity" min="1" max="{{ product.quantity }}">
 											<br>
