@@ -279,5 +279,14 @@
 	</body>
 {% endblock %}
 
+{% block flash %}
+				{% for flash in app.session.flashBag.get('Info') %}
+					<p class="alert alert-info">{{ flash }}</p>
+				{% endfor %}
+				{% for flash in app.session.flashBag.get('Warning') %}
+					<p class="alert alert-danger">{{ flash }}</p>
+				{% endfor %}
+{% endblock %}
+
 {# override footer (copyright) #}
 
