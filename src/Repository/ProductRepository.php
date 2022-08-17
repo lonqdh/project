@@ -65,17 +65,6 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
 
-    public function searchProduct($keyword) 
-    {
-        return $this->createQueryBuilder('product')
-            ->andWhere('product.name LIKE :key')
-            ->setParameter('key', '%' . $keyword . '%')
-            ->orderBy('product.price', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
 
     public function sortBestSellingProducts()
     {

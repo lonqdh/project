@@ -20,8 +20,6 @@ class ProductController extends AbstractController
     #[Route('/index', name: 'product_index')]
     public function productIndex(): Response
     {
-
-        
         $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
         return $this->render('product/index.html.twig',
         [
@@ -138,20 +136,6 @@ class ProductController extends AbstractController
       ]);
     }
 
-    #[IsGranted('ROLE_CUSTOMER')]
-    #[Route('/search', name: 'search_product')]
-    public function searchProduct(ProductRepository $productRepository, Request $request) {
-        $products = $productRepository->searchProduct($request->get('keyword'));
-        // if ($books == null) {
-        //   $this->addFlash("Warning", "No book found !");
-        // }
-        $session = $request->getSession();
-        $session->set('search', true);
-        return $this->render('product/home.html.twig', 
-        [
-            'products' => $products,
-        ]);
-    }
 
     #[IsGranted('ROLE_CUSTOMER')]
     #[Route('/bestselling/asc', name: 'sort_bestselling_ascending')]

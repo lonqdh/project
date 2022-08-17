@@ -33,24 +33,21 @@ class Product
     #[ORM\Column(type: 'string', length: 5)]
     private $size;
 
-    #[ORM\ManyToOne(targetEntity: Manufacturer::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private $manufacturer;
-
-    #[ORM\ManyToOne(targetEntity: Designer::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private $designer;
-
-    #[ORM\ManyToOne(targetEntity: Brand::class)]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]
     private $brand;
 
-    #[ORM\ManyToMany(targetEntity: Material::class)]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
+    private $category;
+
+    #[ORM\ManyToMany(targetEntity: Material::class, inversedBy: 'products')]
     private $material;
 
-    #[ORM\ManyToOne(targetEntity: Category::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private $category;
+    #[ORM\ManyToOne(targetEntity: Designer::class, inversedBy: 'products')]
+    private $designer;
+
+    #[ORM\ManyToOne(targetEntity: Manufacturer::class, inversedBy: 'products')]
+    private $manufacturer;
+
 
     public function __construct()
     {
@@ -134,30 +131,6 @@ class Product
         return $this;
     }
 
-    public function getManufacturer(): ?Manufacturer
-    {
-        return $this->manufacturer;
-    }
-
-    public function setManufacturer(?Manufacturer $manufacturer): self
-    {
-        $this->manufacturer = $manufacturer;
-
-        return $this;
-    }
-
-    public function getDesigner(): ?Designer
-    {
-        return $this->designer;
-    }
-
-    public function setDesigner(?Designer $designer): self
-    {
-        $this->designer = $designer;
-
-        return $this;
-    }
-
     public function getBrand(): ?Brand
     {
         return $this->brand;
@@ -166,6 +139,18 @@ class Product
     public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
@@ -194,16 +179,30 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getDesigner(): ?Designer
     {
-        return $this->category;
+        return $this->designer;
     }
 
-    public function setCategory(?Category $category): self
+    public function setDesigner(?Designer $designer): self
     {
-        $this->category = $category;
+        $this->designer = $designer;
 
         return $this;
     }
+
+    public function getManufacturer(): ?Manufacturer
+    {
+        return $this->manufacturer;
+    }
+
+    public function setManufacturer(?Manufacturer $manufacturer): self
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+
+
 
 }

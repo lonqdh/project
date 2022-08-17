@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ManufacturerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ManufacturerRepository::class)]
@@ -21,6 +23,14 @@ class Manufacturer
 
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
+
+    #[ORM\OneToMany(mappedBy: 'manufacturer', targetEntity: Product::class)]
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +69,36 @@ class Manufacturer
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setManufacturer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getManufacturer() === $this) {
+                $product->setManufacturer(null);
+            }
+        }
 
         return $this;
     }

@@ -28,32 +28,8 @@
 					</div>
 				</div>
 
-				{# tìm kiếm #}
-				<div class="col-md-7">
-					<div class="row">
-						<div class="col">
-							<h5 class="text text-danger">Search product</h5>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<form action="{{ path('search_product') }}" method="post">
-									<input class="form-control" type="search" name="keyword" placeholder="Enter product title" required maxlength="10">
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		{% endif %}
-		{% if products | length == 0 %}
-			<h1 class="text text-danger mt-4 mb-4">
-				No product found!
-			</h1>
-		{% else %}
-			<p class="text-info h3 mt-3">
-				Total products :
-				{{products | length}}
-			</p>
+
 
 			<div class="card-group justify-content-center align-items-center">
 				<div class="row">
@@ -107,7 +83,7 @@
 
 				</div>
 
-			{% endif %}
+			
 
 
 		</div>
