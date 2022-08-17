@@ -17,9 +17,9 @@ class CartController extends AbstractController
     #[Route('/cart', name: 'add_to_cart')]
     public function addToCart(Request $request) 
     {
-        $session = $request->getSession();  
-        $id = $request->get('productid'); //gửi 2 dữ liệu: dữ liệu id của product id và quantity
-        $session->set('productid',$id); //set vào session
+        $session = $request->getSession();
+        $id = $request->get('productid');
+        $session->set('productid',$id);
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         $session->set('product', $product);
         $quantity = $request->get('quantity');
@@ -32,7 +32,8 @@ class CartController extends AbstractController
         $product_price = $product->getPrice();
         $order_price = $product_price * $quantity;
         $session->set('price', $order_price);
-
+        $user = $this->getUser(); //get current user
+        $session->set('user', $user);
         return $this->render('cart/index.html.twig');
     }
 
@@ -40,20 +41,30 @@ class CartController extends AbstractController
     #[Route('/order', name: 'make_order')]
     public function makeOrder(Request $request, ManagerRegistry $managerRegistry) 
     {
-        //tạo session mới
+        //khởi tạo session mới
         $session = new Session();
-        //thay đổi quantity sau khi ord
+
+        //giảm quantity của product sau khi order
         $product = $this->getDoctrine()->getRepository(Product::class)->find($session->get('productid'));
         $product_quantity = $product->getQuantity();
-        $order_quantity = $session->get('quantity'); //tạo object Order để lưu thông tin đơn hàng
+        $order_quantity = $session->get('quantity');
         $new_quantity = $product_quantity - $order_quantity;
         $product->setQuantity($new_quantity);
-        $manager = $managerRegistry->getManager();//manager: lưu object vào database
+
+        //tạo object Order để lưu thông tin đơn hàng
+
+        //set từng thuộc tính cho bảng Order 
+        //VD: $order->setPrice()
+
+        //dùng Manager để lưu object vào DB
+        $manager = $managerRegistry->getManager();
         $manager->persist($product);
         $manager->flush();
 
-        $this->addFlash('Info', 'Order successfully !');// gửi thông báo bằng view
+        //gửi thông báo về view bằng addFlash
+        $this->addFlash('Info', 'Order successfully !');
   
-        return $this->redirectToRoute('product_home');// redirect về trang home sau khi confirm order
+        //redirect về trang home
+        return $this->redirectToRoute('product_home');
     }
 }

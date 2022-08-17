@@ -52,10 +52,7 @@ class MaterialController extends AbstractController
       if ($material == null) {
           $this->addFlash('Warning', 'Material does not exist !');
       } 
-      //check xem còn product trong material$material hay không trước khi xóa
-    //   else if (count($material->getProduct()) > 0) {
-    //     $this->addFlash('Warning', 'Can not delete this material !');
-    //   }  nho uncomment sau khi tao product !!!
+    
       else {
           $manager = $managerRegistry->getManager();
           $manager->remove($material);
