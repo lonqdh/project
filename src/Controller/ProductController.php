@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,6 +49,11 @@ class ProductController extends AbstractController
                 'product' => $product
             ]);
         }
+        else
+        {
+            $this->addFlash('Warning', 'Error !');
+            return $this->redirectToRoute('product_index');
+        }
     }
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete/{id}', name: 'product_delete')]
@@ -55,10 +62,6 @@ class ProductController extends AbstractController
       if ($product == null) {
           $this->addFlash('Warning', 'Product does not exist !');
       } 
-      //check xem còn product trong product$product hay không trước khi xóa
-    //   else if (count($product->getProduct()) > 0) {
-    //     $this->addFlash('Warning', 'Can not delete this product !');
-    //   }  nho uncomment sau khi tao product !!!
       else {
           $manager = $managerRegistry->getManager();
           $manager->remove($product);
@@ -147,7 +150,16 @@ class ProductController extends AbstractController
         ]);
     }
 
-    
+    #[Route('/search', name: 'search_product')]
+    public function searchProduct(ProductRepository $productRepository, Request $request)
+    {
+        $products = $productRepository->searchProduct($request->get('key'));
+        return $this->render('product/home.html.twig',
+        [
+            'products' => $products
+        ]);
+
+    }
 
 
 }

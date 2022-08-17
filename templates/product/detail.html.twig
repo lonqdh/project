@@ -223,7 +223,7 @@ button:hover {
     <h1>{{product.name}}</h1>
     <p><a class="text-decoration-none" href="{{ path('designer_detail', {'id' : product.designer.id })}}">
     {{product.designer.name}}
-    </a>
+    </a> 
     </p>
     <p><a class="text-decoration-none" href="{{ path('manufacturer_detail', {'id' : product.manufacturer.id })}}">
     {{product.manufacturer.name}}
@@ -267,7 +267,3 @@ button:hover {
   
 </footer>
 {% endblock %}
-
-{% block flash %}{% endblock %}
-
-{% block footer %}{% endblock %}

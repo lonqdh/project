@@ -22,7 +22,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface {
       $this->session->getFlashBag()->add("Warning","Access Denied !");
       //redirect về trang login
 
-      $this->session->getFlashBag()->add("Warning","Access Denied !");
+      $this->session->getFlashBag()->add("Info", "Invalid !");
 
       return new RedirectResponse($this->router->generate('app_login'));
    }

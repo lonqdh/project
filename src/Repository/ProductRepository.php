@@ -76,4 +76,29 @@ class ProductRepository extends ServiceEntityRepository
             ;
     }
 
+    public function searchProduct($key)
+    {
+        return $this->createQueryBuilder('product')
+        ->andWhere('product.name LIKE :key')
+        ->setParameter('key', '%'. $key .'%')
+        ->setMaxResults(5)
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+
+    
+
+    /*
+    public function findOneBySomeField($value): ?Material
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
+
 }

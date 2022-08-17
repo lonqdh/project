@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -95,11 +96,16 @@ class CategoryController extends AbstractController
     #[Route('/delete{id}', name: 'category_delete')]
     public function categoryDelete($id, ManagerRegistry $managerRegistry): Response
     {
+        // $product = $managerRegistry->getRepository(Product::class)->findAll();
         $category = $managerRegistry->getRepository(Category::class)->find($id);
         if($category == null){
             $this->addFlash('Warning', 'Category does not exist');
 
-        }else{
+        }
+        else if (count($category->getProducts()) > 0) {
+            $this->addFlash('Warning', 'There are still products using this material !');
+          }
+        else{
             $manager = $managerRegistry->getManager();
             $manager->remove($category);
             $manager->flush();
