@@ -28,7 +28,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')] #[IsGranted('ROLE_CUSTOMER')]
     #[Route('/home', name :'product_home')]
     public function productList()
     {

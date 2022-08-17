@@ -61,10 +61,8 @@ class CartController extends AbstractController
         $manager->persist($product);
         $manager->flush();
 
-        //gửi thông báo về view bằng addFlash
         $this->addFlash('Info', 'Order successfully !');
-  
-        //redirect về trang book store
+
         return $this->redirectToRoute('product_home');
     }
 }
