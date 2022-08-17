@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
+    #[IsGranted('ROLE_CUSTOMER')]
     #[Route('/cart', name: 'add_to_cart')]
     public function addToCart(Request $request) 
     {
@@ -35,6 +37,7 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig');
     }
 
+    
     #[Route('/order', name: 'make_order')]
     public function makeOrder(Request $request, ManagerRegistry $managerRegistry) 
     {
