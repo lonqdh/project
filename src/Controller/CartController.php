@@ -41,10 +41,10 @@ class CartController extends AbstractController
     #[Route('/order', name: 'make_order')]
     public function makeOrder(Request $request, ManagerRegistry $managerRegistry) 
     {
-        //khởi tạo session
+        //khởi tạo session mới
         $session = new Session();
 
-        //giảm quantity của book sau khi order
+        //giảm quantity của product sau khi order
         $product = $this->getDoctrine()->getRepository(Product::class)->find($session->get('productid'));
         $product_quantity = $product->getQuantity();
         $order_quantity = $session->get('quantity');
@@ -61,8 +61,10 @@ class CartController extends AbstractController
         $manager->persist($product);
         $manager->flush();
 
+        //gửi thông báo về view bằng addFlash
         $this->addFlash('Info', 'Order successfully !');
-
+  
+        //redirect về trang home
         return $this->redirectToRoute('product_home');
     }
 }
