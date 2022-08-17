@@ -9,11 +9,13 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/designer')]
 class DesignerController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/index', name: 'designer_index')]
     public function designerIndex(): Response
     {
@@ -46,7 +48,7 @@ class DesignerController extends AbstractController
               'designer' => $designer
           ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/add', name: 'designer_add')]
     public function designerAdd(Request $request): Response
     {
@@ -65,7 +67,7 @@ class DesignerController extends AbstractController
             'designerForm' => $form ->createView()
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit{id}', name: 'designer_edit')]
     public function designerEdit($id, Request $request): Response
     {
@@ -89,7 +91,7 @@ class DesignerController extends AbstractController
             'designerForm' => $form 
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete{id}', name: 'designer_delete')]
     public function designerDelete($id, ManagerRegistry $managerRegistry): Response
     {

@@ -9,12 +9,14 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 #[Route('/material')]
 class MaterialController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/index', name: 'material_index')]
     public function materialIndex(): Response
     {
@@ -43,7 +45,7 @@ class MaterialController extends AbstractController
             ]);
         }
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete/{id}', name: 'material_delete')]
     public function materialDelete ($id, ManagerRegistry $managerRegistry) {
       $material = $managerRegistry->getRepository(Material::class)->find($id);
@@ -62,7 +64,7 @@ class MaterialController extends AbstractController
       }
       return $this->redirectToRoute('material_index');
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/add', name: 'material_add')]
     public function genreAdd (Request $request) {
       $material = new Material;
@@ -80,7 +82,7 @@ class MaterialController extends AbstractController
           'materialForm' => $form
       ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit/{id}', name: 'material_edit')]
     public function materialEdit ($id, Request $request) {
         $material = $this->getDoctrine()->getRepository(Material::class)->find($id);

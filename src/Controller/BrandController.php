@@ -52,7 +52,7 @@ class BrandController extends AbstractController
             ]
         );
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete/{id}', name: 'brand_delete')]
     public function brandDelete($id, ManagerRegistry $managerRegistry)
     {
@@ -67,7 +67,7 @@ class BrandController extends AbstractController
         }
         return $this->redirectToRoute('brand_index');
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/add', name: 'brand_add')]
     public function brandAdd(Request $request)
     {
@@ -87,7 +87,7 @@ class BrandController extends AbstractController
             ]
         );
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit/{id}', name: 'brand_edit')]
     public function brandEdit($id, Request $request)
     {

@@ -9,11 +9,13 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/index', name: 'category_index')]
     public function categoryIndex(): Response
     {
@@ -46,7 +48,7 @@ class CategoryController extends AbstractController
               'category' => $category
           ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/add', name: 'category_add')]
     public function categoryAdd(Request $request): Response
     {
@@ -65,7 +67,7 @@ class CategoryController extends AbstractController
             'categoryForm' => $form ->createView()
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit{id}', name: 'category_edit')]
     public function categoryEdit($id, Request $request): Response
     {
@@ -89,7 +91,7 @@ class CategoryController extends AbstractController
             'categoryForm' => $form 
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete{id}', name: 'category_delete')]
     public function categoryDelete($id, ManagerRegistry $managerRegistry): Response
     {

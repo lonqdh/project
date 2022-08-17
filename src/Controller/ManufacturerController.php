@@ -9,11 +9,13 @@ use App\Repository\ManufacturerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/manufacturer')]
 class ManufacturerController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/index', name: 'manufacturer_index')]
     public function manufacturerIndex () {
         $manufacturers = $this->getDoctrine()->getRepository(Manufacturer::class)->findAll();
@@ -44,7 +46,7 @@ class ManufacturerController extends AbstractController
         'manufacturer' => $manufacturer
     ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete/{id}', name: 'manufacturer_delete')]
     public function manufacturerDelete ($id, ManagerRegistry $managerRegistry){
         $manufacturer = $managerRegistry->getRepository(Manufacturer::class)->find($id);
@@ -58,7 +60,7 @@ class ManufacturerController extends AbstractController
         }
         return $this->redirectToRoute('manufacturer_index');
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/add', name:'manufacturer_add')]
     public function manufacturerAdd (Request $request){
         $manufacturer = new Manufacturer;
@@ -76,7 +78,7 @@ class ManufacturerController extends AbstractController
         'manufacturerForm' => $form
     ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit/{id}', name:'manufacturer_edit')]
     public function manufacturerEdit ($id, Request $request){
         $manufacturer = $this->getDoctrine()->getRepository(Manufacturer::class)->find($id);
