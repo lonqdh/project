@@ -56,7 +56,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         //check role của user để redirect về web page chỉ định
         //nếu là ROLE_ADMIN thì chuyển về trang homepage (route name = "home")
         if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
-            return new RedirectResponse($this->urlGenerator->generate('product_home'));
+            return new RedirectResponse($this->urlGenerator->generate('product_index'));
         } else {
         //ngược lại nếu là ROLE_CUSTOMER thì chuyển về trang store (route name = "book_list")
         return new RedirectResponse($this->urlGenerator->generate('product_home'));
